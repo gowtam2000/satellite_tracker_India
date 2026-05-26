@@ -1,0 +1,137 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Rajdhani', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+  background: #020812;
+  color: #e0f0ff;
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+}
+
+@layer components {
+  .glass-panel {
+    @apply bg-space-50/90 border border-cyan-bright/20 backdrop-blur-xl rounded-lg;
+  }
+
+  .glass-panel-dark {
+    @apply bg-space-100/95 border border-cyan-bright/15 backdrop-blur-md rounded-md;
+  }
+
+  .neon-text {
+    @apply text-cyan-neon;
+    text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+  }
+
+  .neon-border {
+    @apply border-cyan-neon/40;
+    box-shadow: 0 0 8px rgba(0, 240, 255, 0.2);
+  }
+
+  .glow-cyan {
+    box-shadow: 0 0 15px rgba(0, 200, 255, 0.4);
+  }
+
+  .glow-lime {
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.4);
+  }
+
+  .btn-primary {
+    @apply px-4 py-2 bg-cyan-bright/10 hover:bg-cyan-bright/20 border border-cyan-bright/30 hover:border-cyan-bright/50 rounded-md transition-all duration-200 text-sm font-medium tracking-wide;
+  }
+
+  .btn-secondary {
+    @apply px-3 py-1.5 bg-space-200/50 hover:bg-space-200/80 border border-cyan-bright/20 hover:border-cyan-bright/40 rounded transition-all duration-200 text-xs font-medium;
+  }
+
+  .input-field {
+    @apply bg-cyan-bright/5 border border-cyan-bright/20 focus:border-cyan-bright/50 rounded px-3 py-2 text-sm outline-none transition-all duration-200;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    @apply bg-cyan-bright/30 rounded;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    @apply bg-cyan-bright/50;
+  }
+}
+
+@layer utilities {
+  .text-shadow-neon {
+    text-shadow: 0 0 10px currentColor;
+  }
+
+  .animate-glow-pulse {
+    animation: glow-pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes glow-pulse {
+    0%, 100% {
+      opacity: 1;
+      filter: drop-shadow(0 0 8px currentColor);
+    }
+    50% {
+      opacity: 0.6;
+      filter: drop-shadow(0 0 4px currentColor);
+    }
+  }
+}
+
+/* Satellite marker pulse animation */
+@keyframes marker-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 0.7;
+  }
+}
+
+.marker-pulse {
+  animation: marker-pulse 2s ease-in-out infinite;
+}
+
+/* Scan line effect */
+.scan-line {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.5), transparent);
+  animation: scan 8s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes scan {
+  0% {
+    top: -2px;
+  }
+  100% {
+    top: 100%;
+  }
+}
